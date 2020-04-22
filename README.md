@@ -12,6 +12,6 @@ LionVPN for iOS
 please open it with mobile safari https://www.getlionvpn.com/install.html.
 
 
-For Chinese https://www.getlionvpncn.com/install.html
+For Chinese https://www.getlioncn.com/install.html.
 
 Payment method https://www.getlionvpncn.com/pricing.html.
