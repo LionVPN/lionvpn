@@ -1,7 +1,7 @@
 # LionVPN
 LionVPN for windows
 
-Please download latest version for windows 1.0.5.
+Please download latest version for windows 1.0.6.
 
 Add the LionVPN to windows Defender white list. Please take a look at the LionVPN Windows JPG file.
 
@@ -9,9 +9,9 @@ Add the LionVPN to windows Defender white list. Please take a look at the LionVP
 
 LionVPN for iOS
 
-please open it with mobile safari https://www.getlionvpn.com/install.html.
+officail website https://www.lionvpn.com or https://www.getlionvpn.com
 
 
-For Chinese https://www.getlioncn.com/install.html.
+For Chinese https://www.lion-vpn.com/install.html.
 
-Payment method https://www.getlioncn.com/pricing.html.
+Payment method https://www.lion-vpn.com/pricing.html.
