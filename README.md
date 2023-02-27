@@ -1,7 +1,7 @@
 # LionVPN
 LionVPN for windows
 
-Please download latest version for windows 1.0.6.
+Please download latest version for windows 2.0.0.
 
 Add the LionVPN to windows Defender white list. Please take a look at the LionVPN Windows JPG file.
 
