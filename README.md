@@ -1,4 +1,44 @@
 # LionVPN
+## Release Date: September 2025
+
+### ✨ New Features
+
+#### 🔐 Enhanced Auto-Login
+- Stay logged in for 24 hours even after closing the application
+- Automatic authentication on app launch
+- Improved session management for better user experience
+- Manual logout option still available when needed
+
+### 🐛 Bug Fixes
+
+#### Network & Connection
+- Improved DNS resolution for faster connections
+- Enhanced connection stability when switching servers
+- Fixed network protocol switching issues
+
+#### User Interface
+- Fixed display issues in multiple languages
+- Improved application stability
+- Added missing visual elements for better user experience
+
+### 🔧 Performance Improvements
+
+- Optimized network communication for faster speeds
+- Improved memory usage and application stability
+- Enhanced VPN connection reliability
+- Better error recovery mechanisms
+
+### 📦 System Requirements
+
+- Windows 7/8/8.1/10/11 (32-bit and 64-bit)
+- Minimal disk space required (~10 MB)
+- Internet connection for VPN services
+
+### 🔄 Upgrade Notes
+
+- Your settings will be preserved during upgrade
+- New auto-login feature will be enabled automatically
+- Improved startup time and connection speed
 
 LionVPN 3.0.1 Release Notes for Windows
 
