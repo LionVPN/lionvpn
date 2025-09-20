@@ -1,4 +1,10 @@
 # LionVPN
+
+### This release delivers a digitally signed version of the software.
+### All binaries are now code-signed for authenticity and integrity.
+### Enhances trust, compliance, and installation security.
+### No functional changes beyond code signing.
+
 ## Release Date: September 2025
 
 ### ✨ New Features
