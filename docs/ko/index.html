@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LionVPN</title>
+<meta name="description" content="LionVPN: macOS, Windows, iOS, Android, Linux, OpenWrt용 노로그 VPN. 지역별 서버와 자동 경로 선택으로 더 빠르고 안정적인 연결을 제공합니다.">
+<link rel="canonical" href="https://lionvpn.github.io/lionvpn/ko/">
+<link rel="alternate" hreflang="en" href="https://lionvpn.github.io/lionvpn/"><link rel="alternate" hreflang="zh-CN" href="https://lionvpn.github.io/lionvpn/zh-CN/"><link rel="alternate" hreflang="zh-TW" href="https://lionvpn.github.io/lionvpn/zh-TW/"><link rel="alternate" hreflang="ja" href="https://lionvpn.github.io/lionvpn/ja/"><link rel="alternate" hreflang="ko" href="https://lionvpn.github.io/lionvpn/ko/"><link rel="alternate" hreflang="vi" href="https://lionvpn.github.io/lionvpn/vi/"><link rel="alternate" hreflang="x-default" href="https://lionvpn.github.io/lionvpn/">
+<link rel="icon" href="../assets/lionvpn-logo.png" type="image/png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LionVPN">
+<meta property="og:description" content="LionVPN: macOS, Windows, iOS, Android, Linux, OpenWrt용 노로그 VPN. 지역별 서버와 자동 경로 선택으로 더 빠르고 안정적인 연결을 제공합니다.">
+<meta property="og:url" content="https://lionvpn.github.io/lionvpn/ko/">
+<meta property="og:image" content="https://lionvpn.github.io/lionvpn/assets/lionvpn-logo.png">
+<meta name="theme-color" content="#08110c">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #08110c; --surface: #0e1a13; --surface-2: #122219; --line: #1d2f24;
+    --fg: #eef6f0; --muted: #9db1a4; --accent: #2bd974; --accent-soft: rgba(43, 217, 116, 0.14); --accent-strong: #7ff2ae;
+    --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', 'PingFang SC', 'Hiragino Sans', 'Noto Sans CJK SC', 'Apple SD Gothic Neo', sans-serif;
+    --radius: 14px; color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1, h2, h3 { font-family: var(--font-display); margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+  h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); line-height: 1.08; font-weight: 600; }
+  h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); line-height: 1.15; font-weight: 600; }
+  h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
+  p { margin: 0; }
+  .muted { color: var(--muted); }
+  .eyebrow { font-size: 0.74rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(8, 17, 12, 0.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand img { width: 40px; height: 40px; border-radius: 10px; flex: none; box-shadow: 0 14px 28px rgba(43,217,116,0.15); }
+  .brand b { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; letter-spacing: -0.01em; line-height: 1; }
+  .brand small { display: block; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #6fa98a; line-height: 1; margin-top: 6px; }
+  .nav-links { display: flex; align-items: center; gap: 22px; font-size: 0.92rem; color: var(--muted); }
+  .nav-links a:hover { color: var(--fg); }
+  .lang { position: relative; }
+  .lang > a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 0.8rem; color: var(--fg); font-weight: 600; }
+  .lang ul { position: absolute; right: 0; top: calc(100% + 8px); margin: 0; padding: 6px; list-style: none; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; min-width: 160px; display: none; box-shadow: 0 16px 40px rgba(0,0,0,0.45); }
+  .lang:hover ul, .lang:focus-within ul { display: block; }
+  .lang li a { display: block; padding: 8px 10px; border-radius: 8px; font-size: 0.9rem; color: var(--fg); }
+  .lang li a:hover { background: var(--accent-soft); }
+  .lang li a[aria-current="page"] { color: var(--accent); }
+  @media (max-width: 760px) { .nav-links > a { display: none; } }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 0.95rem; border: 1px solid transparent; transition: transform .15s ease, background .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #06130b; }
+  .btn-primary:hover { background: var(--accent-strong); }
+  .btn-ghost { border-color: var(--line); color: var(--fg); background: transparent; }
+  .btn-ghost:hover { border-color: var(--accent); }
+  .hero { padding-block: clamp(56px, 9vw, 120px) clamp(48px, 7vw, 96px); }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 72px); align-items: center; }
+  .hero-copy { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+  .hero-copy p.lead { font-size: 1.15rem; max-width: 34em; color: var(--muted); }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .platform-row { display: flex; flex-wrap: wrap; gap: 18px; font-size: 0.85rem; color: var(--muted); }
+  .platform-row span { display: inline-flex; align-items: center; gap: 6px; }
+  .platform-row svg { width: 14px; height: 14px; }
+  .diagram { min-width: 0; }
+  .diagram svg { width: 100%; height: auto; display: block; max-width: 100%; }
+  @media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } }
+  @keyframes flow { to { stroke-dashoffset: -28; } }
+  .route-line { stroke-dasharray: 8 6; animation: flow 1.6s linear infinite; }
+  @media (prefers-reduced-motion: reduce) { .route-line { animation: none; } .btn:hover { transform: none; } html { scroll-behavior: auto; } }
+  section { padding-block: clamp(56px, 8vw, 104px); border-top: 1px solid var(--line); }
+  .section-head { display: flex; flex-direction: column; gap: 12px; max-width: 42em; margin-bottom: clamp(28px, 4vw, 48px); }
+  .section-head p { color: var(--muted); font-size: 1.05rem; }
+  .grid { display: grid; gap: 18px; }
+  .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 960px) { .grid-4, .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .grid-4, .grid-3 { grid-template-columns: 1fr; } }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .card p { color: var(--muted); font-size: 0.95rem; }
+  .icon { width: 40px; height: 40px; border-radius: 10px; background: var(--accent-soft); display: grid; place-items: center; color: var(--accent); margin-bottom: 4px; }
+  .icon svg { width: 20px; height: 20px; }
+  .platform { display: flex; align-items: center; gap: 14px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); min-width: 0; }
+  .platform .icon { margin: 0; flex: none; }
+  .platform b { display: block; font-family: var(--font-display); font-weight: 600; }
+  .platform span { display: block; font-size: 0.85rem; color: var(--muted); }
+  .platform > a { margin-left: auto; font-size: 0.85rem; color: var(--accent); white-space: nowrap; }
+  @media (max-width: 560px) { .platform > a { display: none; } }
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 0.95rem; }
+  th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: var(--font-display); font-weight: 600; color: var(--muted); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  tr:last-child td { border-bottom: 0; }
+  td.name { font-weight: 600; white-space: nowrap; }
+  td.plat { color: var(--muted); }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-strong); font-size: 0.75rem; font-weight: 600; margin-left: 6px; }
+  .trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  @media (max-width: 760px) { .trust { grid-template-columns: 1fr; } }
+  .trust .card { background: var(--surface-2); }
+  .cta { border-top: 1px solid var(--line); padding-block: clamp(56px, 8vw, 104px); }
+  .cta .wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+  footer { border-top: 1px solid var(--line); padding-block: 32px 40px; font-size: 0.88rem; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; justify-content: space-between; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 18px; }
+  footer a:hover { color: var(--fg); }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="https://lionvpn.com/en" aria-label="LionVPN">
+      <img src="../assets/lionvpn-logo.png" alt="" width="40" height="40">
+      <span><b>LionVPN</b><small>Private access</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#why">LionVPN을 선택하는 이유</a>
+      <a href="#platforms">플랫폼</a>
+      <a href="#transports">전송 방식</a>
+      <a href="https://lionvpn.com/en/support">지원</a>
+      <div class="lang"><a href="#languages" aria-haspopup="true">KO ▾</a><ul id="languages"><li><a href="../">English</a></li><li><a href="../zh-CN/">简体中文</a></li><li><a href="../zh-TW/">繁體中文</a></li><li><a href="../ja/">日本語</a></li><li><a href="../ko/" aria-current="page">한국어</a></li><li><a href="../vi/">Tiếng Việt</a></li></ul></div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">노로그 VPN</p>
+        <h1>경로를 고르고,<br>일상을 연결하세요.</h1>
+        <p class="lead">업무, 여행, 게임, 일상적인 브라우징까지. LionVPN은 노로그를 최우선으로 두고, 지역별 서버를 가까이 유지하며, 지금 네트워크에 맞는 경로를 자동으로 선택합니다.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://lionvpn.com/en/download">LionVPN 다운로드</a>
+          <a class="btn btn-ghost" href="https://lionvpn.com/en">lionvpn.com 방문</a>
+        </div>
+        <div class="platform-row">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg>Windows</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M2 20h20"/></svg>macOS</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>iOS</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 6h4"/></svg>Android</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-5-6-5M12 19h8"/></svg>Linux</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="14" width="20" height="6" rx="2"/><path d="M6 14V9a6 6 0 0 1 12 0v5"/></svg>OpenWrt</span>
+        </div>
+      </div>
+      <div class="diagram">
+        <svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="내 기기 → LionVPN → 목적지">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#17261d" stroke-width="1"/></pattern>
+            <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#2bd974" stop-opacity="0.35"/><stop offset="100%" stop-color="#2bd974" stop-opacity="0"/></radialGradient>
+            <clipPath id="logoclip"><rect x="-24" y="-24" width="48" height="48" rx="12"/></clipPath>
+          </defs>
+          <rect width="560" height="360" fill="url(#grid)"/>
+          <circle cx="280" cy="150" r="120" fill="url(#glow)"/>
+          <path class="route-line" d="M90 268 C170 268 190 150 280 150" fill="none" stroke="#2bd974" stroke-width="2.5"/>
+          <path class="route-line" d="M280 150 C370 150 390 92 470 92" fill="none" stroke="#2bd974" stroke-width="2.5"/>
+          <g transform="translate(60 240)">
+            <rect x="0" y="0" width="60" height="38" rx="6" fill="#0e1a13" stroke="#2f4638" stroke-width="2"/>
+            <rect x="-6" y="40" width="72" height="6" rx="3" fill="#2f4638"/>
+            <text x="30" y="74" text-anchor="middle" fill="#9db1a4" font-family="Inter, system-ui, sans-serif" font-size="12">내 기기</text>
+          </g>
+          <g transform="translate(280 150)">
+            <circle r="36" fill="#0e1a13" stroke="#2bd974" stroke-width="2.5"/>
+            <image href="../assets/lionvpn-logo.png" x="-24" y="-24" width="48" height="48" clip-path="url(#logoclip)"/>
+            <text x="0" y="62" text-anchor="middle" fill="#eef6f0" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600">LionVPN</text>
+          </g>
+          <g transform="translate(470 92)">
+            <circle r="22" fill="#0e1a13" stroke="#2f4638" stroke-width="2"/>
+            <circle r="12" fill="none" stroke="#9db1a4" stroke-width="1.6"/>
+            <path d="M-12 0H12M0 -12V12M-8 -8C-4 -4 4 -4 8 -8M-8 8C-4 4 4 4 8 8" fill="none" stroke="#9db1a4" stroke-width="1.4"/>
+            <text x="0" y="46" text-anchor="middle" fill="#9db1a4" font-family="Inter, system-ui, sans-serif" font-size="12">목적지</text>
+          </g>
+          <g font-family="Inter, system-ui, sans-serif" font-size="11" fill="#2bd974"><text x="150" y="196">UDP · TCP</text><text x="356" y="112">CDN · Hysteria 2</text></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <section id="why">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">LionVPN을 선택하는 이유</p><h2>노로그가 먼저. 그다음이 속도, 프라이버시, 커버리지.</h2><p>보안, 프라이버시, 지역별 서버, 자동 경로 선택으로 지금 네트워크에서 실제로 연결되는 경로를 제공합니다.</p></div>
+      <div class="grid grid-4">
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>노로그 프라이버시</h3><p>사용자의 활동은 사용자의 것입니다. 프라이버시는 설정 페이지 끝이 아니라 제품의 중심에 있습니다.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 18c4 0 4-12 8-12s4 12 8 12"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/></svg></div><h3>자동 경로 선택</h3><p>더 빠르고 안정적인 경로를 자동으로 찾아 줍니다. 어느 위치가 연결될지 추측할 필요가 없습니다.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></div><h3>지역별 서버</h3><p>속도와 가용성이 필요한 곳 가까이에서 연결하세요. 위치는 국가와 도시별로 표시됩니다.</p></div>
+        <div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>보안과 프라이버시</h3><p>암호화 연결과 서명된 로그인 응답이 일상적인 브라우징, 업무, 여행을 보호합니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="platforms">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">모든 기기에서</p><h2>하나의 계정, 여섯 개의 플랫폼.</h2><p>설치 파일은 lionvpn.com과 앱 스토어에서 배포합니다. macOS 빌드는 Apple 공증, Windows 빌드는 코드 서명을 거칩니다.</p></div>
+      <div class="grid grid-3">
+        <div class="platform"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M2 20h20"/></svg></div><div><b>macOS</b><span>6.4 · Universal · macOS 12.4 이상</span></div><a href="https://lionvpn.com/en/download">다운로드</a></div>
+        <div class="platform"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8"/></svg></div><div><b>Windows</b><span>3.0.1 · Windows 7 – 11</span></div><a href="https://lionvpn.com/en/download">다운로드</a></div>
+        <div class="platform"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><div><b>iOS</b><span>App Store · 엔터프라이즈 설치</span></div><a href="https://apps.apple.com/app/id1445424991">App Store</a></div>
+        <div class="platform"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 6h4"/></svg></div><div><b>Android</b><span>Google Play · Android TV</span></div><a href="https://play.google.com/store/apps/details?id=com.vpn.peervpn">Google Play</a></div>
+        <div class="platform"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 17l6-5-6-5M12 19h8"/></svg></div><div><b>Linux</b><span>0.1.3-rc.1 · deb · rpm · tar.gz</span></div><a href="https://lionvpn.com/en/download">다운로드</a></div>
+        <div class="platform"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="14" width="20" height="6" rx="2"/><path d="M6 14V9a6 6 0 0 1 12 0v5"/></svg></div><div><b>OpenWrt</b><span>0.1.3-rc.1 · 24.10 및 25.12</span></div><a href="https://lionvpn.com/en/download">다운로드</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="transports">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">전송 방식</p><h2>네트워크에 맞는 경로.</h2><p>LionVPN은 현재 위치에서 작동하는 전송 방식을 선택하며, 설정에서 직접 지정할 수도 있습니다.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>전송 방식</th><th>설명</th><th>플랫폼</th></tr></thead>
+          <tbody>
+            <tr><td class="name">LionVPN UDP</td><td>KCP 신뢰성 계층, AES-256 암호화, ECC 키 교환을 갖춘 네이티브 UDP 터널</td><td class="plat">macOS · Windows · iOS · Android · Linux</td></tr>
+            <tr><td class="name">LionVPN TCP</td><td>UDP를 차단하는 네트워크를 위한 동일 프로토콜의 TCP 버전</td><td class="plat">macOS · iOS · Android · Linux</td></tr>
+            <tr><td class="name">CDN<span class="tag">신규</span></td><td>표준 HTTPS 위의 VLESS + XHTTP over TLS, 강하게 필터링되는 네트워크용</td><td class="plat">macOS 6.4 · iOS</td></tr>
+            <tr><td class="name">Hysteria 2<span class="tag">신규</span></td><td>손실이 많거나 속도가 제한된 회선을 위한 QUIC 기반 전송 방식</td><td class="plat">macOS 6.4 · iOS(다음 릴리스)</td></tr>
+            <tr><td class="name">SOCKS5</td><td>활성화된 환경에서 지원</td><td class="plat">클라이언트 빌드에 따라 다름</td></tr>
+            <tr><td class="name">H2</td><td>단계적으로 추가 중</td><td class="plat">로드맵</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">신뢰할 수 있도록</p><h2>모든 릴리스에 포함되는 것.</h2></div>
+      <div class="trust">
+        <div class="card"><h3>서명된 로그인 응답</h3><p>서버 응답은 UDP, TCP, CDN 경로에서 서명되고 검증됩니다. 변조된 응답은 거부됩니다.</p></div>
+        <div class="card"><h3>깨끗하고 서명된 빌드</h3><p>릴리스 번들은 서명 전에 남아 있는 개발 파일을 검사합니다. macOS 빌드는 공증 및 스테이플, Windows 빌드는 코드 서명을 거칩니다.</p></div>
+        <div class="card"><h3>로컬 기기는 그대로</h3><p>사설 및 링크 로컬 주소 대역은 터널 밖에 두므로, 연결 중에도 AirPlay, 프린터, 가정 내 기기가 정상 작동합니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="wrap">
+      <p class="eyebrow">시작하기</p>
+      <h2>요금제를 고르고, 앱을 설치하고, 연결하세요.</h2>
+      <p class="muted">다운로드부터 추천 위치 연결까지 몇 분이면 됩니다.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://lionvpn.com/en/download">LionVPN 다운로드</a>
+        <a class="btn btn-ghost" href="https://lionvpn.com/en/pricing">요금제 보기</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Master Proxy Co. · LionVPN</span>
+    <nav aria-label="Footer">
+      <a href="https://lionvpn.com/en/privacy">개인정보 처리방침</a>
+      <a href="https://lionvpn.com/en/terms">서비스 약관</a>
+      <a href="https://lionvpn.com/en/faq">FAQ</a>
+      <a href="https://lionvpn.com/en/support">지원</a>
+      <a href="https://github.com/LionVPN/lionvpn">GitHub</a>
+    </nav>
+  </div>
+</footer>
+</body>
+</html>
