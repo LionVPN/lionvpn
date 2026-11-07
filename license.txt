@@ -1,0 +1,22 @@
+Copyright (c) 2025 Master Proxy Co. / masterpro. All Rights Reserved.
+
+PROPRIETARY SOFTWARE LICENSE
+
+This software and associated documentation files (the "Software") are the proprietary 
+and confidential information of Master Proxy Co. ("Company").
+
+NO PERMISSION IS GRANTED to use, copy, modify, distribute, sublicense, or sell copies 
+of the Software without explicit written permission from the Company.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
+DEALINGS IN THE SOFTWARE.
+
+Unauthorized copying, reverse engineering, or distribution of this software, via any 
+medium, is strictly prohibited and will be prosecuted to the maximum extent possible 
+under the law.
+
+For licensing inquiries, please contact: [peerfasttv@gmail.com]
